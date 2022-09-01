@@ -3,10 +3,10 @@ Feature: Place Order
 
   Scenario: user add first item
     Given user navigate to web page
-    When search "pink" item
-    And add "pink" item
-    When search "dress" item
-    And add "dress" item
+    When search "black" item
+    And add "black" item
+    When search "tshirt" item
+    And add "tshirt" item
     When user filling billing detail
     And user place order
     Then validate "valid" scenario

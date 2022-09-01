@@ -19,46 +19,42 @@ import io.cucumber.java.en.When;
 public class TestCheckout {
 	
 	public static WebDriver driver;
-	private Search search;
-	private Order order;
+	private Search search = new Search();
+	private Order order = new Order();
 	
-	@Before
-	public void setup() {
-		DriverSingleton.getInstance(Constants.CHROME);
-		search = new Search();
-		order = new Order();
-		
+	
+	public TestCheckout() {
+		driver = Hook.driver;
 	}
 	
-	@Given("^user navigate to web page$")
-	public void navigate_login() {
-		driver = DriverSingleton.getDriver();
-		driver.get(Constants.URL);
+	@When("user navigate web page")
+	public void navigate() {
+		driver.get(Constants.LOGINURL);
 	}
 	
-	@When("^search \"([^\"]*)\" item")
+	@And("^search \"([^\"]*)\" item")
 	public void search(String item) {
 		search.searchItem(item);
 	}
 	
-	@And("^add \"([^\"]*)\" item$")
+	@And("add \"([^\"]*)\" item")
 	public void addFirstItem(String item) {
 		order.detailProduct(item);
 		order.checkOut();
 	}
 	
-	@When("^user filling billing detail$")
+	@And("user filling billing detail")
 	public void inputBillingDetail() {
 		order.billingDetails();
 		order.terms();
 	}
 	
-	@And("^user place order$")
+	@And("user place order")
 	public void placeOrder() {
 		order.placeOrder();
 	}
 	
-	@Then("^validate \"([^\"]*)\" scenario$")
+	@Then("validate \"([^\"]*)\" scenario")
 	public void validate(String isValid) {
 		if (isValid.equalsIgnoreCase(isValid)) {
 			String actual = order.getSuccessMessage();

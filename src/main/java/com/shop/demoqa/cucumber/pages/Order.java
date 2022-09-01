@@ -124,7 +124,7 @@ public class Order {
 		terms.click();
 	}
 	
-	public void placeOrder() {
+	public void Order() {
 		placeorderBtn.click();
 	}
 	
