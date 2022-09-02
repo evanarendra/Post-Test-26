@@ -1,8 +1,8 @@
 
 Feature: Place Order
 
-  Scenario: user add first item
-    Given user navigate to web page
+  Scenario: user add item
+    Given user navigate  web page
     When search "black" item
     And add "black" item
     When search "tshirt" item
